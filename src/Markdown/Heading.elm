@@ -1,11 +1,11 @@
 module Markdown.Heading exposing (..)
 
-import Whitespace
 import Helpers
 import Markdown.RawBlock exposing (Attribute, RawBlock(..), UnparsedInlines(..))
 import Parser
 import Parser.Advanced as Advanced exposing ((|.), (|=), Nestable(..), Step(..), andThen, chompIf, chompWhile, getChompedString, spaces, succeed, symbol)
 import Parser.Token as Token
+import Whitespace exposing (upToThreeSpaces)
 
 
 type alias Parser a =
@@ -15,20 +15,7 @@ type alias Parser a =
 parser : Parser RawBlock
 parser =
     succeed Heading
-        |. (getChompedString spaces
-                |> andThen
-                    (\startingSpaces ->
-                        let
-                            startSpace =
-                                String.length startingSpaces
-                        in
-                        if startSpace >= 4 then
-                            Advanced.problem (Parser.Expecting "heading with < 4 spaces in front")
-
-                        else
-                            succeed startSpace
-                    )
-           )
+        |. upToThreeSpaces
         |. symbol Token.hash
         |= (getChompedString (chompWhile isHash)
                 |> andThen
@@ -42,6 +29,20 @@ parser =
 
                         else
                             succeed level
+                    )
+           )
+        |. (getChompedString spaces
+                |> andThen
+                    (\spaceInBetween ->
+                        let
+                            currentSpaceInBetween =
+                                String.length spaceInBetween
+                        in
+                        if currentSpaceInBetween == 0 then
+                            Advanced.problem (Parser.Expecting "heading must have at least one space after #")
+
+                        else
+                            succeed currentSpaceInBetween
                     )
            )
         |= (Helpers.chompUntilLineEndOrEnd

@@ -1,27 +1,5 @@
 # CommonMark - ATX headings
 
-## [Example 34](https://spec.commonmark.org/0.29/#example-34)
-
-This markdown:
-
-````````````markdown
-#5 bolt
-
-#hashtag
-
-````````````
-
-Should give output:
-
-````````````html
-<p>#5 bolt</p><p>#hashtag</p>
-````````````
-
-But instead was:
-
-````````````html
-<h1>5 bolt</h1><h1>hashtag</h1>
-````````````
 ## [Example 43](https://spec.commonmark.org/0.29/#example-43)
 
 This markdown:
@@ -83,4 +61,26 @@ But instead was:
 
 ````````````html
 <h3>foo \</h3><h2>foo #\</h2><h1>foo \</h1>
+````````````
+## [Example 49](https://spec.commonmark.org/0.29/#example-49)
+
+This markdown:
+
+````````````markdown
+## 
+#
+### ###
+
+````````````
+
+Should give output:
+
+````````````html
+<h2></h2><h1></h1><h3></h3>
+````````````
+
+But instead was:
+
+````````````html
+<h2></h2><h3></h3>
 ````````````

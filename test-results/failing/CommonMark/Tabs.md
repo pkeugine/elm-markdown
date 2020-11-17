@@ -86,3 +86,23 @@ But instead was:
 ````````````html
 <p>- foo - bar - baz</p>
 ````````````
+## [Example 10](https://spec.commonmark.org/0.29/#example-10)
+
+This markdown:
+
+````````````markdown
+#	Foo
+
+````````````
+
+Should give output:
+
+````````````html
+<h1>Foo</h1>
+````````````
+
+But instead was:
+
+````````````html
+<p># Foo</p>
+````````````

@@ -48,6 +48,27 @@ Gives this correct output:
 
 ````````````
 
+### [Example 34](https://spec.commonmark.org/0.29/#example-34)
+
+This markdown:
+
+
+````````````markdown
+#5 bolt
+
+#hashtag
+
+````````````
+
+Gives this correct output:
+
+
+````````````html
+<p>#5 bolt</p>
+<p>#hashtag</p>
+
+````````````
+
 ### [Example 35](https://spec.commonmark.org/0.29/#example-35)
 
 This markdown:
@@ -262,28 +283,6 @@ Gives this correct output:
 <p>Foo bar</p>
 <h1>baz</h1>
 <p>Bar foo</p>
-
-````````````
-
-### [Example 49](https://spec.commonmark.org/0.29/#example-49)
-
-This markdown:
-
-
-````````````markdown
-## 
-#
-### ###
-
-````````````
-
-Gives this correct output:
-
-
-````````````html
-<h2></h2>
-<h1></h1>
-<h3></h3>
 
 ````````````
 
@@ -9357,24 +9356,6 @@ Gives this correct output:
 <pre><code>foo
 bar
 </code></pre>
-
-````````````
-
-### [Example 10](https://spec.commonmark.org/0.29/#example-10)
-
-This markdown:
-
-
-````````````markdown
-#	Foo
-
-````````````
-
-Gives this correct output:
-
-
-````````````html
-<h1>Foo</h1>
 
 ````````````
 
