@@ -32,6 +32,16 @@ suite =
                     "# Hello! ###"
                         |> parse
                         |> Expect.equal (Ok [ Block.Heading Block.H1 (unstyledText "Hello!") ])
+            , test "heading can have up to three spaces before #" <|
+                \() ->
+                    "   # Hello!"
+                        |> parse
+                        |> Expect.equal (Ok [ Block.Heading Block.H1 (unstyledText "Hello!") ])
+            , test "heading must have at least one space after #" <|
+                \() ->
+                    "#5 bolt"
+                        |> parse
+                        |> Expect.equal (Ok [ Block.Paragraph (unstyledText "#5 bolt") ])
             , test "Heading 2" <|
                 \() ->
                     "## Hello!"
